@@ -16,7 +16,7 @@ export class AlertService {
     this.data = data
   }
 
-  dropAlert(data: any) {
+  dropAlert() {
     this.data == null
   }
 }

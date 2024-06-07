@@ -52,6 +52,7 @@ export class EmployeeListComponent implements OnInit {
       this.alertMessage = this.alertData.getData()?.message
       setTimeout(() => {
         this.alertShow = false;
+        this.alertData.dropAlert();
       }, this.alertData.getData()?.time);
     }
   }
@@ -70,8 +71,23 @@ export class EmployeeListComponent implements OnInit {
   }
 
   deleteEmployee(username: string) {
-    if (confirm("Hapus data dengan username " + username + " ?"))
+    if (confirm("Hapus data dengan username " + username + " ?")) {
+      const sendData = {
+        type: 'success',
+        message: `Success delete employee dengan username ${username} !`,
+        time: 5 * 1000
+      }
+      this.alertData.setAlert(sendData);
+      this.alertShow = true;
+      this.alertMessage = this.alertData.getData()?.message
+      setTimeout(() => {
+        this.alertShow = false;
+        this.alertData.dropAlert();
+      }, this.alertData.getData()?.time);
+
       this.employeeService.DeleteEmployee(username);
+    }
+
   }
 
   updateDisplayedData() {
