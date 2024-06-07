@@ -47,12 +47,12 @@ export class EmployeeListComponent implements OnInit {
 
     this.search()
 
-    if (this.alertData.getData().message) {
+    if (this.alertData.getData()?.message) {
       this.alertShow = true;
-      this.alertMessage = this.alertData.getData().message
+      this.alertMessage = this.alertData.getData()?.message
       setTimeout(() => {
         this.alertShow = false;
-      }, this.alertData.getData().time);
+      }, this.alertData.getData()?.time);
     }
   }
 
@@ -88,9 +88,17 @@ export class EmployeeListComponent implements OnInit {
 
     if (this.sortKey) {
       filteredData.sort((a: any, b: any) => {
-        const x = a[this.sortKey];
-        const y = b[this.sortKey];
-        return this.reverse ? x.localeCompare(y) : y.localeCompare(x);
+        const x: any = a[this.sortKey];
+        const y: any = b[this.sortKey];
+        if (typeof x === 'string' && typeof y === 'string') {
+          return this.reverse ? y.localeCompare(x) : x.localeCompare(y);
+        } else if (typeof x === 'number' && typeof y === 'number') {
+          return this.reverse ? y - x : x - y;
+        } else if (x instanceof Date && y instanceof Date) {
+          return this.reverse ? y.getTime() - x.getTime() : x.getTime() - y.getTime();
+        } else {
+          return 0;
+        }
       });
     }
 
