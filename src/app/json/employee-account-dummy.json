@@ -1,0 +1,32 @@
+[
+  {
+    "username": "user1",
+    "password": "password123",
+    "token": "abc123",
+    "accountStatus": "Active"
+  },
+  {
+    "username": "user2",
+    "password": "pass456",
+    "token": "xyz789",
+    "accountStatus": "Active"
+  },
+  {
+    "username": "user3",
+    "password": "secure789",
+    "token": "def456",
+    "accountStatus": "Inactive"
+  },
+  {
+    "username": "user4",
+    "password": "pass789",
+    "token": "ghi789",
+    "accountStatus": "Active"
+  },
+  {
+    "username": "user5",
+    "password": "abcxyz",
+    "token": "jkl123",
+    "accountStatus": "Inactive"
+  }
+]

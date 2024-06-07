@@ -1,0 +1,121 @@
+<app-navbar></app-navbar>
+
+<div class="w-full p-5 bg-blue-50">
+  <div class="pb-5">
+    <span class="font-bold text-xl uppercase">Add Employee</span>
+  </div>
+  <div class="w-full p-5 shadow-lg bg-white rounded-lg">
+    <div>
+      <span class="font-bold text-lg">New Employee</span>
+    </div>
+    <div class="space-y-3">
+      <form class="mt-4 space-y-6" [formGroup]="validationEmployee" (submit)="simpanEmployee()">
+        <div *ngIf="incorrectCredentials" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+          role="alert">
+          <p class="block sm:inline">{{ messageAlert }}</p>
+        </div>
+        <div>
+          <label for="username" class="block">Username</label>
+          <input type="text" id="username" formControlName="username" [(ngModel)]="employeeData.username"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+            required />
+          <div
+            *ngIf="validationEmployee.get('username')?.invalid && (validationEmployee.get('username')?.dirty || validationEmployee.get('username')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('username')?.errors?.['required']">Username is required.</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="firstName" class="block">First Name</label>
+            <input type="text" id="firstName" formControlName="firstName" [(ngModel)]="employeeData.firstName"
+              class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+            <div
+              *ngIf="validationEmployee.get('firstName')?.invalid && (validationEmployee.get('firstName')?.dirty || validationEmployee.get('firstName')?.touched)"
+              class="text-red-500 mt-1">
+              <div *ngIf="validationEmployee.get('firstName')?.errors?.['required']">First Name is required.</div>
+            </div>
+          </div>
+          <div>
+            <label for="lastName" class="block">Last Name</label>
+            <input type="text" id="lastName" formControlName="lastName" [(ngModel)]="employeeData.lastName"
+              class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block">Email</label>
+          <input type="email" id="email" formControlName="email" [(ngModel)]="employeeData.email"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+          <div
+            *ngIf="validationEmployee.get('email')?.invalid && (validationEmployee.get('email')?.dirty || validationEmployee.get('email')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('email')?.errors?.['required']">Email tidak boleh kosong.</div>
+            <div *ngIf="validationEmployee.get('email')?.errors?.['email']">Format yang email salah.</div>
+          </div>
+        </div>
+        <div>
+          <label for="birthDate" class="block">Birth Date</label>
+          <input type="datetime-local" id="birthDate" formControlName="birthDate" [(ngModel)]="employeeData.birthDate"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+          <div
+            *ngIf="validationEmployee.get('birthDate')?.invalid && (validationEmployee.get('birthDate')?.dirty || validationEmployee.get('birthDate')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('birthDate')?.errors?.['required']">Birth date tidak boleh kosong.</div>
+            <div *ngIf="validationEmployee.get('birthDate')?.errors?.['invalidBirthDate']">Birth date tidak boleh lebih
+              dari tanggal sekarang.</div>
+          </div>
+        </div>
+        <div>
+          <label for="basicSalary" class="basicSalary">Basic Salary</label>
+          <input type="number" id="basicSalary" formControlName="basicSalary" [(ngModel)]="employeeData.basicSalary"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+          <div
+            *ngIf="validationEmployee.get('basicSalary')?.invalid && (validationEmployee.get('basicSalary')?.dirty || validationEmployee.get('basicSalary')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('basicSalary')?.errors?.['required']">Status tidak boleh kosong.</div>
+          </div>
+        </div>
+        <div>
+          <label for="status" class="block">Status</label>
+          <select name="status" id="status" formControlName="status" [(ngModel)]="employeeData.status"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+            <option value="">Pilih Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+          <div
+            *ngIf="validationEmployee.get('status')?.invalid && (validationEmployee.get('status')?.dirty || validationEmployee.get('status')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('status')?.errors?.['required']">Status tidak boleh kosong.</div>
+          </div>
+        </div>
+        <div>
+          <label for="group" class="block">Group</label>
+          <select name="group" id="group" formControlName="group" [(ngModel)]="employeeData.group"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full">
+            <option value="">Pilih Group</option>
+            <option value="Management">Management</option>
+            <option value="IT">IT</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+          </select>
+          <div
+            *ngIf="validationEmployee.get('group')?.invalid && (validationEmployee.get('group')?.dirty || validationEmployee.get('group')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('group')?.errors?.['required']">Group tidak boleh kosong.</div>
+          </div>
+        </div>
+        <div>
+          <label for="description" class="block">Description</label>
+          <textarea id="description" formControlName="description" [(ngModel)]="employeeData.description"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"></textarea>
+        </div>
+        <div class="space-x-2 flex justify-end">
+          <button type="submit" class="w-1/5 p-2 bg-blue-600 rounded-lg text-white text-base font-medium">Save</button>
+          <button (click)="backEmployeeList()"
+            class="w-1/5 p-2 bg-red-600 rounded-lg text-white text-base font-medium">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

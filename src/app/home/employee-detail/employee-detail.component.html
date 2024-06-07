@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+<div class="w-full p-5 bg-blue-50">
+  <div class="pb-5">
+    <span class="font-bold text-xl uppercase">EMPLOYEE</span>
+  </div>
+  <div class="w-full shadow-lg bg-white rounded-xl">
+    <div class="px-5 pt-5 pb-3 flex justify-between items-center">
+      <span class="text-lg font-bold">DETAIL EMPLOYEE</span>
+      <button (click)="navigateBack()" class="bg-blue-600 p-1 px-3 rounded-md text-white">Kembali</button>
+    </div>
+    <div class="border border-slate-200 w-full"></div>
+    <div class="p-5 space-y-3">
+      <div>
+        <label for="username" class="block">Username</label>
+        <input type="text" [(ngModel)]="employeeData.username"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="firstName" class="block">Full Name</label>
+          <input type="text" [(ngModel)]="employeeData.firstName"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+            readonly>
+        </div>
+        <div>
+          <label for="lastName" class="block">Last Name</label>
+          <input type="text" [(ngModel)]="employeeData.username"
+            class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+            readonly>
+        </div>
+      </div>
+      <div>
+        <label for="email" class="block">Email</label>
+        <input type="email" [(ngModel)]="employeeData.email"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly>
+      </div>
+      <div>
+        <label for="birthDate" class="block">Birth Date</label>
+        <input type="text" [(ngModel)]="employeeData.birthDate"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly>
+
+      </div>
+      <div>
+        <label for="basicSalary" class="basicSalary">Basic Salary</label>
+        <input type="text" [(ngModel)]="basicSalary"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly>
+      </div>
+      <div>
+        <label for="status" class="block">Status</label>
+        <input type="text" [(ngModel)]="employeeData.status"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly>
+      </div>
+      <div>
+        <label for="group" class="block">Group</label>
+        <input type="text" [(ngModel)]="employeeData.group"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly>
+      </div>
+      <div>
+        <label for="description" class="block">Description</label>
+        <textarea id="description" [(ngModel)]="employeeData.description"
+          class="border border-slate-400 focus:outline-none focus:ring-slate-600 focus:border-slate-600 p-2 rounded-lg w-full"
+          readonly></textarea>
+      </div>
+
+    </div>
+  </div>
+</div>

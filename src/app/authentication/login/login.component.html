@@ -1,0 +1,52 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8">
+  <div class="bg-white shadow-lg p-8 rounded-md">
+    <div class="max-w-md w-full">
+      <div>
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-slate-800">
+          Employee Management
+        </h2>
+      </div>
+
+      <form class="mt-8 space-y-6" [formGroup]="validationEmployee" (ngSubmit)="login()">
+        <!-- Alert message for incorrect credentials -->
+        <div *ngIf="incorrectCredentials" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+          role="alert">
+          <span class="block sm:inline" [innerHTML]="messageAlert"></span>
+        </div>
+
+
+        <!-- Label for Username input -->
+        <div>
+          <label for="username" class="block text-base font-medium text-slate-600">Username</label>
+          <input id="username" name="username" [(ngModel)]="username" type="text" formControlName="username"
+            class="rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm">
+          <div
+            *ngIf="validationEmployee.get('username')?.invalid && (validationEmployee.get('username')?.dirty || validationEmployee.get('username')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('username')?.errors?.['required']">Username tidak boleh kosong.</div>
+          </div>
+        </div>
+
+        <!-- Label for Password input -->
+        <div>
+          <label for="password" class="block text-base font-medium text-slate-600">Password</label>
+          <input id="password" name="password" [(ngModel)]="password" type="password" formControlName="password"
+            class="rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm">
+          <div
+            *ngIf="validationEmployee.get('password')?.invalid && (validationEmployee.get('password')?.dirty || validationEmployee.get('password')?.touched)"
+            class="text-red-500 mt-1">
+            <div *ngIf="validationEmployee.get('password')?.errors?.['required']">Password tidak boleh kosong.</div>
+          </div>
+        </div>
+
+        <!-- Sign in button -->
+        <div>
+          <button type="submit"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Sign in
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
